@@ -1,5 +1,33 @@
 import React from "react";
 
+const titleStyle = {
+  color: 'black',
+  textAlign: 'center',
+  paddingTop: "50px"
+};
+
+const loadStyle = {
+  textAlign: "center",
+  padding: "50px"
+};
+
+const tempStyle = {
+  textAlign: "center",
+  fontSize: "60px",
+  padding: "30px"
+}
+
+const summaryStyle = {
+  textAlign: "center",
+  fontSize: "25px"
+}
+
+const detailStyle = {
+  textAlign: "center",
+  fontSize: "40px",
+  paddingBottom: "50px"
+}
+
 export default class getWeather extends React.Component {
 
   constructor(props) {
@@ -48,23 +76,17 @@ export default class getWeather extends React.Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return <div style={loadStyle}>Grabbing your location...</div>;
     } else {
       return (
         <div>
-          <h1>Your current weather forecast.</h1>
+          <h1 style={titleStyle}>Your current weather forecast.</h1>
 
-          <p>Temperature: {items.currently.temperature}</p>
-          <p>Summary: {items.currently.summary}</p>
-          <p>Detailed summary: {items.minutely.summary}</p>
-          {/* <p>Summary: {items.currently.temperature}</p> */}
-
-          <a href="https://darksky.net/poweredby/">
-            Powered By Dark Sky
-          </a>
+          <p style={tempStyle}>{items.currently.temperature}° F</p>
+          <p style={summaryStyle}> {items.daily.summary}</p>
+          <p style={detailStyle}>It is looking like it is going to be: <br /> {items.minutely.summary}</p>
 
         </div>
-
 
       );
     }
