@@ -30,7 +30,7 @@ const titleStyle = {
 };
 
 const picStyle = {
-  height: "300px",
+  height: "280px",
   width: "auto",
   textAlign: "center",
   alignContent: "center",

@@ -1,14 +1,18 @@
 import React from "react";
 
+import { MDBIcon } from "mdbreact";
+
 const loadStyle = {
   textAlign: "center",
-  padding: "50px"
+  padding: "50px",
+  fontSize: "30px"
 };
 
 const titleStyle = {
   color: 'black',
   textAlign: 'center',
-  paddingTop: "50px"
+  paddingTop: "50px",
+  fontWeight: "bold"
 };
 
 const tempStyle = {
@@ -52,7 +56,7 @@ export default class getWeather extends React.Component {
             this.setState({
               isLoaded: true,
               items: data,
-            })
+            });
             document.querySelector("pre").innerHTML = JSON.stringify(data, null, 2);
             return data;
           })
@@ -71,7 +75,10 @@ export default class getWeather extends React.Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div style={loadStyle}>Grabbing your location...</div>;
+      return <div style={loadStyle}>Grabbing your location
+      <MDBIcon icon="spinner" pulse size="1x" fixed />
+        {/* <span className="sr-only">Loading...</span> */}
+      </div>;
     } else {
       return (
         <div>
@@ -79,6 +86,10 @@ export default class getWeather extends React.Component {
           <div className="row">
             <div className="col-md-6 col-xs-12">
               <p style={tempStyle}>Temperature is {items.currently.temperature}° F and {items.currently.summary}</p>
+              {/* <img src='{items.currently.icons}' alt=""/> */}
+              {/* <FaCloudRain />*/}
+              {/* <MDBIcon icon="cloud-rain" /> */}
+             {/* <MDBIcon icon={items.currently.icons} /> */}
               <p style={tempStyle}>Feels like: {items.currently.apparentTemperature}° F <br />High: {items.daily.data[0].temperatureHigh}° F <br /> Low: {items.daily.data[0].temperatureLow} ° F</p>
             </div>
             <div className="col">
