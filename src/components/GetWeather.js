@@ -1,31 +1,26 @@
 import React from "react";
 
+const loadStyle = {
+  textAlign: "center",
+  padding: "50px"
+};
+
 const titleStyle = {
   color: 'black',
   textAlign: 'center',
   paddingTop: "50px"
 };
 
-const loadStyle = {
-  textAlign: "center",
-  padding: "50px"
-};
-
 const tempStyle = {
   textAlign: "center",
-  fontSize: "60px",
-  padding: "30px"
+  fontSize: "30px",
+  marginTop: "50px",
+  marginBottom: "50px"
 }
 
 const summaryStyle = {
   textAlign: "center",
   fontSize: "25px"
-}
-
-const detailStyle = {
-  textAlign: "center",
-  fontSize: "40px",
-  paddingBottom: "50px"
 }
 
 export default class getWeather extends React.Component {
@@ -80,12 +75,17 @@ export default class getWeather extends React.Component {
     } else {
       return (
         <div>
-          <h1 style={titleStyle}>Your current weather forecast.</h1>
-
-          <p style={tempStyle}>{items.currently.temperature}° F</p>
-          <p style={summaryStyle}> {items.daily.summary}</p>
-          <p style={detailStyle}>It is looking like it is going to be: <br /> {items.minutely.summary}</p>
-
+          <h2 style={titleStyle}>Based on your current location...</h2>
+          <div className="row">
+            <div className="col-md-6 col-xs-12">
+              <p style={tempStyle}>Temperature is {items.currently.temperature}° F and {items.currently.summary}</p>
+              <p style={tempStyle}>Feels like: {items.currently.apparentTemperature}° F <br />High: {items.daily.data[0].temperatureHigh}° F <br /> Low: {items.daily.data[0].temperatureLow} ° F</p>
+            </div>
+            <div className="col">
+              <p style={tempStyle}>Looks like it is going to be: <br /> {items.minutely.summary}</p>
+              <p style={summaryStyle}>{items.daily.summary}</p>
+            </div>
+          </div>
         </div>
 
       );
